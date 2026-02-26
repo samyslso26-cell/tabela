@@ -1,0 +1,61 @@
+class time{
+    constructor(nome, vitoria, empate, derrota, golMarcado, golSofrido){
+        this.nome = nome
+        this.vitoria = 0
+        this.empate = 0
+        this.derrota = 0
+        this.golMarcado = 0
+        this.golSofrido = 0
+    }
+
+    calcularPontos(){
+        let pontos = this.vitoria * 3 + this.empate * 1 + this.derrota * 0
+        return pontos
+    }
+
+    calcularSaldo(){
+        let saldo = this.golMarcado - this.golSofrido
+        return saldo
+    }
+
+    registrarFimDeJogo(golPro, golContra){
+        this.golMarcado += golPro
+        this.golSofrido += golContra
+
+        if(golPro > golContra){
+            this.vitoria ++
+        } else if (golContra > golPro){
+            this.derrota ++
+        }else{
+            this.empate ++
+        }
+    }
+}
+
+class partida{
+    constructor(mandante, visitante){
+        this.mandante = mandante
+        this.visitante = visitante
+    }
+
+    jogar(golM, golV){
+        this.mandante.registrarFimDeJogo(golM, golV)
+        this.visitante.registrarFimDeJogo(golV, golM)
+    }
+}
+
+class campeonato{
+    constructor(equipes){
+        this.equipes = equipes 
+    }
+
+    adicionarTime(time){
+        
+    }
+
+    obterTabela(){
+       return pontos 
+       return vitoria 
+       return saldo
+    }
+}
