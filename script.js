@@ -31,7 +31,6 @@ class time{
         }
     }
 }
-
 class partida{
     constructor(mandante, visitante){
         this.mandante = mandante
@@ -46,16 +45,41 @@ class partida{
 
 class campeonato{
     constructor(equipes){
-        this.equipes = equipes 
+        this.equipes = []
     }
 
-    adicionarTime(time){
-        
+    adicionarTime(nomedotime){
+        let novotime = new Time(nomedotime)
+        this.equipes.push(novotime)
     }
 
     obterTabela(){
-       return pontos 
-       return vitoria 
-       return saldo
+        return this.equipes
+    }
+}
+
+let comp = new campeonato();
+let inputnome=document.getElementById("texto")
+let button = document.getElementById("botao")
+
+button.addEventListener("click", () => {
+    if(inputnome.value.length > 0){
+        comp.adicionarTime(inputnome.value)
+        inputnome.value = ""
+        atualizarTabela()
+    }
+})
+
+function atualizarTabela(){
+    tabela.innerHTML = ""
+
+    for(let i = 0; i < comp.equipes.length; i++){
+        let novaLinha= document.createElement("tr")
+        novaLinha.innerHTML = "<td>" + comp.equipes[i].nome + "</td>"
+        novaLinha.innerHTML += "<td>" + comp.equipes[i].calcularPontos() + "</td>" 
+        novaLinha.innerHTML += "<td>" + comp.equipes[i].vitoria + "</td>" 
+        novaLinha.innerHTML += "<td>" + comp.equipes[i].calcularSaldo() + "</td>"
+
+        tabela.appendChild(novaLinha)
     }
 }
